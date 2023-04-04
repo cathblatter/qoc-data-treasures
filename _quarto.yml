@@ -1,0 +1,30 @@
+project:
+  type: book
+
+book:
+  title: "LV: Analysing Quality of Care data - resources"
+  author: 
+    - name: "Catherine Blatter"
+  date: "2/21/2023"
+  chapters:
+    - index.qmd
+    - dupes.qmd
+    - missings.qmd
+    - dataviz.qmd
+    - references.qmd
+
+bibliography: references.bib
+
+echo: true
+
+format:
+  html:
+    theme: 
+      - cosmo
+      - custom.scss
+    from: markdown+emoji
+  pdf:
+    documentclass: scrreprt
+
+
+

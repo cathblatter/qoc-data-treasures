@@ -1,0 +1,61 @@
+# Missings
+
+```{r, echo = F}
+# load tibble, dplyr, naniar
+library(readr)
+library(tibble)
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(naniar))
+
+
+zz_dataset <- read_csv("data/2023-02-20_QoC_sample_dataset.csv", 
+                       show_col_types = FALSE)
+
+dataset <- 
+  zz_dataset %>% mutate(sex = as.factor(sex))
+```
+
+## Explore missings in sample data
+
+```{r}
+naniar::vis_miss(dataset)
+```
+
+- There are only few missings 
+
+- NA's in `disch` are linked to NA's in `los` 
+
+
+
+## Dataframe from slides
+
+- by using the command `set.seed(1234)` you should be able 
+  to reproduce the same dataframe as in the slides
+
+```{r}
+# set seed for reproducibility
+set.seed(1234)
+
+# create a sample-df with 100 rows and 
+# 3 variables
+df_miss <- 
+  tibble(id = 1:100,
+         var1 = sample(
+           c(1:4, NA_real_), 100, T),
+         var2 = sample(
+           c(1:4, NA_real_), 100, T))
+
+# first 4 entries
+head(df_miss, 4) 
+
+# quick summary of proportional missings
+naniar::miss_prop_summary(df_miss)
+```
+
+
+```{r}
+naniar::vis_miss(df_miss)
+```
+
+
+

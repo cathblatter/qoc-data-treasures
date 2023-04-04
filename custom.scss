@@ -1,0 +1,164 @@
+/*-- scss:defaults --*/
+
+// fonts unibas
+$font-family-sans-serif: "Arial",
+  FreeSerif, serif;
+$presentation-heading-font: "Georgia",
+  FreeSerif, serif;
+
+// colors unibas
+$mint: #A5D7D2; 
+$mintdark: #1EA5A5;
+$greydark: #2D373C;
+$grey: #8C9196;
+$reddark: #D20537;
+$redlight: #EB829B;
+$greylight: #BEC3C8;
+$tuerkis: #006E6E;
+$black: #000000;
+$white: #FFFFFF;
+
+$nicer-black: #272822;
+
+
+$primary: $mint !default;
+
+
+// setup unibas general
+$body-color: $black;
+$body-bg: $white;
+$presentation-heading-color: $body-color;
+$presentation-title-slide-text-align: left;
+
+/* manage font sizes and fix too small code font*/
+$presentation-font-size-root: 32px;
+$code-block-font-size: 0.8em !default;
+
+/* add a smaller code font */
+$smaller-code-font-size: 0.6em;
+
+/*superscript font size */
+$super-font-size: 0.6em;
+
+/*change link colors */
+$link-color: $mintdark;
+$code-color: $mintdark;
+
+/*-- scss:rules --*/
+
+.reveal a {
+  line-height: 1.3em;
+}
+
+// own additions to highlight text
+.white {
+  color: $white;
+}
+.bg-white {
+  background-color: $white;
+}
+.black {
+  color: $black;
+}
+.bg-black {
+  background-color: $black;
+}
+.mint {
+  color: $mint;
+}
+.bg-mint {
+  background-color: $mint;
+}
+.mintdark {
+  color: $mintdark;
+}
+.bg-mintdark {
+  background-color: $mintdark;
+}
+.greydark {
+  color: $greydark;
+}
+.bg-greydark {
+  background-color: $greydark;
+}
+.grey {
+  color: $grey;
+}
+.bg-grey {
+  background-color: $grey;
+}
+.reddark {
+  color: $reddark;
+}
+.bg-reddark {
+  background-color: $reddark;
+}
+.redlight {
+  color: $redlight;
+}
+.bg-redlight {
+  background-color: $redlight;
+}
+.greylight {
+  color: $greylight;
+}
+.bg-greylight {
+  background-color: $greylight;
+}
+.tuerkis {
+  color: $tuerkis;
+}
+.bg-tuerkis {
+  background-color: $tuerkis;
+}
+.black {
+  color: $black;
+}
+.bg-black {
+  background-color: $black;
+}
+.white {
+  color: $white;
+}
+.bg-white {
+  background-color: $white;
+}
+
+.bg-yellow {
+  background-color: #ffff00;
+}
+
+.purple{
+  color: #942192;
+}
+
+.bg-purple{
+  background-color: #942192;
+}
+
+.orange{
+  color: orange;
+}
+
+.sup{
+    vertical-align: super;
+    font-size: $super-font-size;
+}
+
+.code-small{
+    font-size: $smaller-code-font-size;
+}
+
+
+// * option for yellow line highlighting - same as in remark *//
+
+/* set background for highlighted line */
+.reveal .slides .highlight-line {
+  background-color: #FCFC86;
+}
+
+/* increase opacity from .4 (muted) to .9 */
+.reveal div.sourceCode pre code.has-line-highlights > span:not(.highlight-line) {
+    opacity: .9 !important;
+}
+

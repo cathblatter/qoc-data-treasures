@@ -1,0 +1,147 @@
+# Visualising data
+
+```{r, echo = F}
+# load tibble, dplyr, naniar
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(naniar))
+suppressPackageStartupMessages(library(kableExtra))
+
+
+zz_dataset <- read_csv("data/2023-02-20_QoC_sample_dataset.csv", 
+                       show_col_types = FALSE)
+
+dataset <- 
+  zz_dataset %>% mutate(sex = as.factor(sex))
+```
+
+## Prepare data for visualisation
+
+Consider the example from class where four people (A, B, C, D) were asked 
+about their tool-preferences for accessing their e-banking account: 
+
+```{r, echo=F}
+wldf <- 
+  tibble(person_id = LETTERS[1:4], 
+         uses_phone = c("yes", "yes", "yes", "no"),
+         uses_computer = c("no", "yes", "no", "yes")) 
+
+wldf %>% 
+  kbl(caption = "Tidy dataframe - wide format") %>% kable_styling()
+```
+
+- Formally, this dataframe is in 'tidy' format and the unit of analysis is the 
+  `person_id`
+  
+Now we represent the same information in a barchart, to compare the frequencies: 
+
+```{r, echo = F}
+wldf %>% 
+  pivot_longer(cols = -person_id, names_to = "tool", values_to = "answer") %>% 
+  ggplot(aes(x = tool, fill = answer)) +
+  geom_bar(position = "fill") +
+  scale_y_continuous(name = NULL, 
+                     labels = scales::percent) +
+  scale_fill_discrete() +
+  theme_minimal() +
+  theme(text = element_text(size = 16))
+  
+```
+
+But how did we actually input the data? If we try this 
+we only get the variable `uses_computer` on the x-axis (with the values no and yes): 
+
+```{r}
+ggplot(data = wldf, aes(x = uses_computer)) +
+  geom_bar()
+```
+
+When we go back to the original plot: 
+
+```{r, echo = F}
+wldf %>% 
+  pivot_longer(cols = -person_id, names_to = "tool", values_to = "answer") %>% 
+  ggplot(aes(x = tool, fill = answer)) +
+  geom_bar(position = "fill") +
+  scale_y_continuous(name = NULL, 
+                     labels = scales::percent) +
+  scale_fill_discrete() +
+  theme_minimal() +
+  theme(text = element_text(size = 16))
+  
+```
+
+-  we see that we want a variable `tool` on the x-axis, that has the values 'uses_computer' and 'uses_phone' 
+
+- we want a variable `answer` that has the values 'no' and 'yes'
+
+(- we possibly want a variable `percentage` on the y-axis, that has numeric values 
+ according to the proportions)
+ 
+ - In summary, the format of the data needs to change in order to plot
+ 
+## Option 1: wide-to-long a.k.a stack 
+ 
+ In this option we use `tidyr::pivot_longer()` to create a dataframe in long format:
+ 
+```{r}
+# we want to stack the columns uses_computer and uses_phone
+long_df <- 
+  wldf %>% 
+  pivot_longer(cols = c(uses_computer, uses_phone), 
+               names_to = "tool", 
+               values_to = "answer") 
+
+# print the df
+long_df
+```
+ 
+ - this dataframe now has the variable `tool` and `answer` for the ggplot2-code 
+  using `geom_bar(position = "fill)` : 
+ 
+```{r}
+ggplot(long_df, aes(x = tool, fill = answer)) +
+  geom_bar(position = "fill")
+```
+ 
+ - of course, this needed some further 'layout-work' to improve the labeling of scales 
+ and the removal of the grey-background
+ 
+```{r}
+ggplot(long_df, aes(x = tool, fill = answer)) +
+  geom_bar(position = "fill") +
+  scale_y_continuous(name = NULL, 
+                     labels = scales::percent) +
+  theme_minimal() +
+  theme(text = element_text(size = 16))
+```
+
+## Option 2: Aggregation of values before plotting
+
+Another option is to aggregate (or summarise) values manually, before we pass them 
+to a plotting function (the example above is not really a good example for this), 
+but the code might be handy if you have more variables than 2 for this situation.
+
+In the example, we'd need to have three variables as indicated above: `tool` (for the x-axis), `answer` for the fill and `percent` for the percentage. We can create this 
+table with: 
+```{r}
+agg_data <- 
+  wldf |> 
+  select(uses_computer, uses_phone) |> 
+  as.list() |> 
+  map_dfr(~janitor::tabyl(.x), .id = "tool") |> 
+  rename(answer = .x)
+
+# print agg_data
+agg_data
+```
+
+And then we can plot it: 
+```{r}
+ggplot(data = agg_data, aes(x = tool, y = percent, fill = answer)) +
+  geom_col(position = "stack")
+```
+
+- Careful: instead of using `geom_bar(position="fill")` without a y-variable, here 
+  we pass the `percent`-value to the y-axis and use `geom_col(position="stack")` 
+  for the `answer`-variable
+

@@ -1,0 +1,74 @@
+# Preface {.unnumbered}
+
+- Holds code resources for class exercise
+
+## Necessary packages
+
+```{r, echo = F}
+# load tibble, dplyr, naniar
+library(tibble)
+suppressPackageStartupMessages(library(dplyr))
+suppressPackageStartupMessages(library(naniar))
+suppressPackageStartupMessages(library(readr))
+suppressPackageStartupMessages(library(kableExtra))
+suppressPackageStartupMessages(library(ggplot2))
+```
+
+If you do not have these installed ("Could not find package xyz") you need to 
+install the package. 
+
+```{r, eval = F}
+# load necessary packages
+# data preparation
+library(readr)
+library(tibble)
+library(dplyr)
+
+# visualization
+library(ggplot2)
+
+# missings
+library(naniar)
+
+# tables
+library(kableExtra)
+```
+
+## Import dataset
+
+- By storing it into an object with the `zz_`-prefix, you can easier modify it 
+  afterwards without re-importing
+
+```{r}
+# import the dataset using the {readr}-package
+zz_dataset <- read_csv("data/2023-02-20_QoC_sample_dataset.csv", 
+                       show_col_types = FALSE)
+```
+
+
+## Check the import
+
+By looking at the top five rows (the "head" of the dataset): 
+
+```{r}
+head(zz_dataset, n = 5)
+```
+
+- Seems the input worked as expected :relieved:
+- the columns 'sex' and 'unit' should be a factor, not a character
+
+```{r}
+# change 'sex' into factor
+dataset <- 
+  zz_dataset %>% 
+  mutate(sex = as.factor(sex), 
+         unit = as.factor(unit))
+```
+
+
+... then again check the top five rows:
+
+
+```{r}
+head(dataset, n = 5)
+```
