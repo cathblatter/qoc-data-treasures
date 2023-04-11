@@ -1,6 +1,6 @@
 # Preface {.unnumbered}
 
-This web-resource contains code that was touched upon during class. 
+This web-resource contains code that was talked about upon during class. 
 
 ## Necessary packages
 

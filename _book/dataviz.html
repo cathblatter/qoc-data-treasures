@@ -20,6 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+q { quotes: "“" "”" "‘" "’"; }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
@@ -236,7 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li>Formally, this dataframe is in ‘tidy’ format and the unit of analysis is the <code>person_id</code></li>
+<li>Formally, this dataframe is in <q>tidy</q> format and the unit of analysis is the <code>person_id</code></li>
 </ul>
 <p>Now we represent the same information in a barchart, to compare the frequencies:</p>
 <div class="cell">
@@ -259,8 +260,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li><p>we see that we want a variable <code>tool</code> on the x-axis, that has the values ‘uses_computer’ and ‘uses_phone’</p></li>
-<li><p>we want a variable <code>answer</code> that has the values ‘no’ and ‘yes’</p></li>
+<li><p>we see that we want a variable <code>tool</code> on the x-axis, that has the values <q>uses_computer</q> and <q>uses_phone</q></p></li>
+<li><p>we want a variable <code>answer</code> that has the values <q>no</q> and <q>yes</q></p></li>
 </ul>
 <p>(- we possibly want a variable <code>percentage</code> on the y-axis, that has numeric values according to the proportions)</p>
 <ul>
@@ -305,7 +306,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <ul>
-<li>of course, this needed some further ‘layout-work’ to improve the labeling of scales and the removal of the grey-background</li>
+<li>of course, this needed some further <q>layout-work</q> to improve the labeling of scales and the removal of the grey-background</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(long_df, <span class="fu">aes</span>(<span class="at">x =</span> tool, <span class="at">fill =</span> answer)) <span class="sc">+</span></span>

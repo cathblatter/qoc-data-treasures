@@ -22,6 +22,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+q { quotes: "“" "”" "‘" "’"; }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
@@ -210,10 +211,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <section id="preface" class="level1 unnumbered">
 <h1 class="unnumbered">Preface</h1>
-<p>This web-resource contains code that was touched upon during class.</p>
+<p>This web-resource contains code that was talked about upon during class.</p>
 <section id="necessary-packages" class="level2">
 <h2 class="anchored" data-anchor-id="necessary-packages">Necessary packages</h2>
-<p>If you do not have these installed (“Could not find package xyz”) you need to install the package.</p>
+<p>If you do not have these installed (<q>Could not find package xyz</q>) you need to install the package.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load necessary packages</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># data preparation</span></span>
@@ -244,7 +245,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="check-the-import" class="level2">
 <h2 class="anchored" data-anchor-id="check-the-import">Check the import</h2>
-<p>By looking at the top five rows (the “head” of the dataset):</p>
+<p>By looking at the top five rows (the <q>head</q> of the dataset):</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(zz_dataset, <span class="at">n =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -260,7 +261,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <ul>
 <li>Seems the input worked as expected <span class="emoji" data-emoji="relieved">😌</span></li>
-<li>the columns ‘sex’ and ‘unit’ should be a factor, not a character</li>
+<li>the columns <q>sex</q> and <q>unit</q> should be a factor, not a character</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change 'sex' into factor</span></span>

@@ -20,6 +20,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+q { quotes: "“" "”" "‘" "’"; }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
@@ -166,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#different-types-of-duplicates" id="toc-different-types-of-duplicates" class="nav-link active" data-scroll-target="#different-types-of-duplicates"><span class="header-section-number">1.1</span> Different ‘types’ of duplicates</a>
+  <li><a href="#different-types-of-duplicates" id="toc-different-types-of-duplicates" class="nav-link active" data-scroll-target="#different-types-of-duplicates"><span class="header-section-number">1.1</span> Different <q>types</q> of duplicates</a>
   <ul class="collapse">
   <li><a href="#fully-duplicated-entries" id="toc-fully-duplicated-entries" class="nav-link" data-scroll-target="#fully-duplicated-entries"><span class="header-section-number">1.1.1</span> Fully duplicated entries</a></li>
   <li><a href="#fully-distinct-entries" id="toc-fully-distinct-entries" class="nav-link" data-scroll-target="#fully-distinct-entries"><span class="header-section-number">1.1.2</span> Fully distinct entries</a></li>
@@ -196,9 +197,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 <section id="different-types-of-duplicates" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="different-types-of-duplicates"><span class="header-section-number">1.1</span> Different ‘types’ of duplicates</h2>
+<h2 data-number="1.1" class="anchored" data-anchor-id="different-types-of-duplicates"><span class="header-section-number">1.1</span> Different <q>types</q> of duplicates</h2>
 <ul>
-<li>fully duplicated entries are ‘easy’ to catch but rare</li>
+<li>fully duplicated entries are <q>easy</q> to catch but rare</li>
 <li>partially duplicated or mismatched entries are frequent but require more sophisticated checking</li>
 </ul>
 <section id="fully-duplicated-entries" class="level3" data-number="1.1.1">
@@ -270,7 +271,7 @@ FALSE  TRUE
 </div>
 <ul>
 <li><p>there are several duplicated rows - although <code>duplicated()</code> only identified one fully duplicated entry</p></li>
-<li><p>this requires a further examination of these cases by identfiying the “weird” ids and in a second create a subset (filtered) dataset, to check these cases:</p></li>
+<li><p>this requires a further examination of these cases by identfiying the <q>weird</q> ids and in a second create a subset (filtered) dataset, to check these cases:</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># keep the weird ids</span></span>
