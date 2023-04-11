@@ -1,0 +1,20 @@
+{
+  "hash": "55716b1cd651d1140205eee93447b9bf",
+  "result": {
+    "markdown": "# Duplicates\n\n\n\n::: {.cell}\n\n:::\n\n\n\n## Different 'types' of duplicates\n\n- fully duplicated entries are 'easy' to catch but rare\n- partially duplicated or mismatched entries are frequent but require more \n  sophisticated checking\n\n### Fully duplicated entries\n\n- `base::duplicated()` tests for fully duplicated entries (same row twice)\n\n- several options to use: \n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# check numbers of duplicated rows\ntable(duplicated(dataset))\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n\nFALSE  TRUE \n   99     1 \n```\n:::\n:::\n\n\n\n- add a column `is_dupe` with information:\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# adding column\ndataset$is_dupe <- duplicated(dataset)\n\n# check entry\nhead(dataset)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n# A tibble: 6 x 7\n  patient_ids sex   unit   adm          los disch      is_dupe\n        <dbl> <fct> <chr>  <date>     <dbl> <date>     <lgl>  \n1       13679 f     ward_B 2022-01-27    10 2022-02-06 FALSE  \n2       15231 f     ward_A 2022-01-16     3 2022-01-19 FALSE  \n3       10758 f     ward_A 2022-01-10    18 2022-01-28 FALSE  \n4       10319 m     ward_B 2022-01-20     7 2022-01-27 FALSE  \n5       17826 m     ward_A 2022-01-26     5 2022-01-31 FALSE  \n6       17463 f     ward_A 2022-01-30    33 2022-03-04 FALSE  \n```\n:::\n:::\n\n\n\n\n### Fully distinct entries\n\n- `dplyr::distinct()` tests for full distinct entries (same row twice)\n\n- basically the opposite of `base::duplicated()`\n\n\n### Identify duplicates by counting the key (or key-index-pair)\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# counting the number of rows per patient_ids\n# using sort = T moves the highest number on top\ncount(dataset, patient_ids, sort = T)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n# A tibble: 96 x 2\n   patient_ids     n\n         <dbl> <int>\n 1       10119     2\n 2       12335     2\n 3       16839     2\n 4       18098     2\n 5       10236     1\n 6       10319     1\n 7       10522     1\n 8       10647     1\n 9       10758     1\n10       10875     1\n# ... with 86 more rows\n```\n:::\n:::\n\n\n\n- there are several duplicated rows - although `duplicated()` only identified one \nfully duplicated entry\n\n- this requires a further examination of these cases by identfiying the \n \"weird\" ids and in a second create a subset (filtered) dataset, to check \n these cases: \n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# keep the weird ids\nweird_ids <- \n  count(dataset, patient_ids, sort = T) %>% \n  filter(n > 1 ) %>% \n  pull(patient_ids)\n\n# filter the dataset by these values\ndataset %>% \n  filter(patient_ids %in% weird_ids) %>% \n  arrange(patient_ids)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n# A tibble: 8 x 7\n  patient_ids sex   unit   adm          los disch      is_dupe\n        <dbl> <fct> <chr>  <date>     <dbl> <date>     <lgl>  \n1       10119 f     ward_A 2022-01-08    27 2022-02-04 FALSE  \n2       10119 f     ward_A 2022-01-08    27 2022-02-04 TRUE   \n3       12335 m     ward_B 2022-01-15    21 2022-02-05 FALSE  \n4       12335 m     ward_B 2022-01-25    25 2022-02-19 FALSE  \n5       16839 m     ward_A 2022-01-08    16 2022-01-24 FALSE  \n6       16839 f     ward_B 2022-01-08    NA NA         FALSE  \n7       18098 f     ward_B 2022-01-13    16 2022-01-29 FALSE  \n8       18098 f     ward_B 2022-01-13    NA NA         FALSE  \n```\n:::\n:::\n",
+    "supporting": [
+      "dupes_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {
+      "knitr": [
+        "{\"type\":\"list\",\"attributes\":{},\"value\":[]}"
+      ]
+    },
+    "preserve": null,
+    "postProcess": false
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "hash": "1a3f77cdcb3b269ed9ff50665936d630",
+  "result": {
+    "markdown": "# Missings\n\n\n\n::: {.cell}\n\n:::\n\n\n\n## Explore missings in sample data\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\nnaniar::vis_miss(dataset)\n```\n\n::: {.cell-output-display}\n![](missings_files/figure-pdf/unnamed-chunk-2-1.pdf){fig-pos='H'}\n:::\n:::\n\n\n\n- There are only few missings \n\n- NA's in `disch` are linked to NA's in `los` \n\n\n\n## Dataframe from slides\n\n- by using the command `set.seed(1234)` you should be able \n  to reproduce the same dataframe as in the slides\n\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# set seed for reproducibility\nset.seed(1234)\n\n# create a sample-df with 100 rows and \n# 3 variables\ndf_miss <- \n  tibble(id = 1:100,\n         var1 = sample(\n           c(1:4, NA_real_), 100, T),\n         var2 = sample(\n           c(1:4, NA_real_), 100, T))\n\n# first 4 entries\nhead(df_miss, 4) \n```\n\n::: {.cell-output .cell-output-stdout}\n```\n# A tibble: 4 x 3\n     id  var1  var2\n  <int> <dbl> <dbl>\n1     1     4     3\n2     2     2     1\n3     3    NA     3\n4     4     4     4\n```\n:::\n\n```{.r .cell-code}\n# quick summary of proportional missings\nnaniar::miss_prop_summary(df_miss)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n# A tibble: 1 x 3\n     df   var  case\n  <dbl> <dbl> <dbl>\n1 0.127 0.667  0.34\n```\n:::\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\nnaniar::vis_miss(df_miss)\n```\n\n::: {.cell-output-display}\n![](missings_files/figure-pdf/unnamed-chunk-4-1.pdf){fig-pos='H'}\n:::\n:::\n",
+    "supporting": [
+      "missings_files/figure-pdf"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {
+      "knitr": [
+        "{\"type\":\"list\",\"attributes\":{},\"value\":[]}"
+      ]
+    },
+    "preserve": null,
+    "postProcess": false
+  }
+}

@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: f2d57cfc-8a30-44ed-b29d-2b64796274a9
+      url: 'https://exquisite-semifreddo-5d4e9a.netlify.app'

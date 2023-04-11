@@ -141,7 +141,19 @@ ggplot(data = agg_data, aes(x = tool, y = percent, fill = answer)) +
   geom_col(position = "stack")
 ```
 
+
 - Careful: instead of using `geom_bar(position="fill")` without a y-variable, here 
   we pass the `percent`-value to the y-axis and use `geom_col(position="stack")` 
   for the `answer`-variable
+
+An finally, improve the layout: 
+
+```{r}
+ggplot(data = agg_data, aes(x = tool, y = percent, fill = answer)) +
+  geom_col(position = "stack") + 
+  scale_y_continuous(name = NULL, 
+                     labels = scales::percent) +
+  theme_minimal() +
+  theme(text = element_text(size = 16))
+```
 

@@ -1,6 +1,6 @@
 # Preface {.unnumbered}
 
-- Holds code resources for class exercise
+This web-resource contains code that was touched upon during class. 
 
 ## Necessary packages
 
